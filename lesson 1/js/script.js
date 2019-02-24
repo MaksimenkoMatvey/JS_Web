@@ -42,6 +42,16 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-    })
+    titles.forEach(function(item){
+        if (item.textContent.length < 70) {
+            return;
+        } else {
+            const str = item.textContent.slice(0, 71) + '...' ;// ES 5 //slice отрезать лишнее (от 1-го до 71 символа)
+            // const str = `${item.textContent.slice(0, 71)}...`; ES 6 стандарт
+            item.textContent = str;
+        }
+    });
+
+ });
 
 
