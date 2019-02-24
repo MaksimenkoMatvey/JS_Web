@@ -32,6 +32,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             trigger.remove();
             showConfirm();
+            calcGoods(1);
 
             removeBtn.classList.add('goods__item-remove');
             removeBtn.innerHTML = '&times';  //&times - крестик
@@ -74,8 +75,11 @@ window.addEventListener('DOMContentLoaded', () => {
             
         }
     }
-    //setInterval
-    //setTimeout
+    
+    function calcGoods(i) {
+        const items = cartWrapper.querySelectorAll('.goods__item');
+        badge.textContent = i + items.length;
+    }
  });
 
 
