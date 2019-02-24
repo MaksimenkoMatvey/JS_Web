@@ -31,6 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 empty = cartWrapper.querySelector('.empty');
 
             trigger.remove();
+            showConfirm();
 
             removeBtn.classList.add('goods__item-remove');
             removeBtn.innerHTML = '&times';  //&times - крестик
@@ -42,16 +43,39 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-    titles.forEach(function(item){
-        if (item.textContent.length < 70) {
-            return;
-        } else {
-            const str = item.textContent.slice(0, 71) + '...' ;// ES 5 //slice отрезать лишнее (от 1-го до 71 символа)
-            // const str = `${item.textContent.slice(0, 71)}...`; ES 6 стандарт
-            item.textContent = str;
-        }
-    });
 
+    function sliceTitle() {
+        titles.forEach(function(item){
+            if (item.textContent.length < 70) {
+                return;
+            } else {
+                const str = item.textContent.slice(0, 71) + '...' ;// ES 5 //slice отрезать лишнее (от 1-го до 71 символа)
+                // const str = `${item.textContent.slice(0, 71)}...`; ES 6 стандарт
+                item.textContent = str;
+            }
+        });
+    }
+    sliceTitle();
+
+    function showConfirm() {
+        confirm.style.display = 'block';
+        let counter = 100;
+        const id = setInterval(frame, 10);
+
+        function frame() {
+            if ( counter == 10){
+                clearInterval(id);
+                confirm.style.display = 'none';
+            } else {
+                counter--;
+                confirm.style.transform = `translateY(-${counter}px)`;
+                confirm.style.opacity = '.' + counter;
+            }
+            
+        }
+    }
+    //setInterval
+    //setTimeout
  });
 
 
